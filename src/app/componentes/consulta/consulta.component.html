@@ -1,0 +1,59 @@
+<form *ngIf="!editar" [formGroup]="personaForm" align="center">
+    <label>DNI:</label>
+    <input type="text" placeholder="dni" formControlName="dni"> 
+    <label>Apellido:</label>
+    <input matInput placeholder="apellido" formControlName="lastName">
+    <label>Nombre:</label>
+    <input matInput placeholder="nombre" formControlName="firstName">
+    <label>Email:</label>
+    <input matInput placeholder="email" formControlName="email">
+    <button mat-raised-button color="primary" (click)="onSubmit()">Crear nuevo</button>
+
+</form>
+
+<table>
+    <tr>
+        <th>DNI</th>
+        <th>Apellido</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Editar</th>
+        <th>Borrar</th>
+    </tr>
+    <tr *ngFor="let persona of personas">
+        <td>{{persona.dni}}</td>
+        <td>{{persona.lastName}}</td>
+        <td>{{persona.firstName}}</td>
+        <td>{{persona.email}}</td>
+        <td><button mat-raised-button color="primary" (click)="onEdit(persona)">Editar</button></td>
+        <td><button mat-raised-button color="warn" (click)="onDelete(persona)">Borrar</button></td>
+    </tr>
+</table>
+
+<div *ngIf="editar">
+    <form [formGroup]="personaForm">
+    <table>
+        <tr>
+            <td><label for='dni2' style='font-weight: bold'>Dni</label></td>
+            <td><input formControlName="dni" name='dni2' style='text-align: right' /></td>
+        </tr>
+        <tr>
+            <td><label for='lastName2' style='font-weight: bold'>Last Name</label></td>
+            <td><input name='lastName2' formControlName="lastName" style='text-align: right' /></td>
+        </tr>
+        <tr>
+            <td><label for='firstName2' style='font-weight: bold'>First Name</label></td>
+            <td><input name='firstName2' formControlName="firstName" style='text-align: right' /></td>
+        </tr>
+        <tr>
+            <td><label for='email2' style='font-weight: bold'>Email</label></td>
+            <td><input name='email2' formControlName="email" style='text-align: right' /></td>
+        </tr>
+        <tr>
+            <td colspan='2' style='text-align: center'><button (click)='actualizar()'>Actualizar</button></td>
+            <td colspan='2' style='text-align: center'><button (click)='cancelar()'>Cancelar</button></td>
+        </tr>
+    </table>
+        </form>
+    
+</div>
